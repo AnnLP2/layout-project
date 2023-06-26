@@ -1,0 +1,31 @@
+{
+  "name": "layout-project",
+  "version": "1.0.0",
+  "description": "project",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnnLP2/layout-project.git"
+  },
+  "keywords": [
+    "gulp"
+  ],
+  "author": "AnnLP2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnnLP2/layout-project/issues"
+  },
+  "homepage": "https://github.com/AnnLP2/layout-project#readme",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.43.0",
+    "eslint-plugin-react": "^7.32.2",
+    "prettier": "2.8.8"
+  }
+}
