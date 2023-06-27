@@ -1,4 +1,4 @@
-const {src, dest, parallel} = require('gulp');
+const { parallel } = require('gulp');
 
 const sassCompile = (done) => {
     console.log('Compile SASS to CSS');
@@ -19,4 +19,5 @@ const imagesOptimize = (done) => {
 };
 
 exports.default = parallel(sassCompile, pugCompile, imagesOptimize);
+exports.layoutCompile = parallel(sassCompile, pugCompile);
 
