@@ -1,19 +1,35 @@
-const { src, dest, parallel } = require('gulp');
+const { src, dest, parallel, watch } = require('gulp');
+const sass = require('gulp-sass')(require('sass'));
+const pug = require('gulp-pug');
+const browserSync = require('browser-sync').create();
 
-const copyScss = () => {
-    return src(['dist/**/*.scss', '!dist/pages/**'])
-        .pipe(dest('build/styles'));
+const buildSass = () => {
+    console.log('Компиляция SASS');
+
+    return src('dist/scss/*.scss')
+        .pipe(sass())
+        .pipe(dest('build/styles/'))
+        .pipe(browserSync.stream());
 };
 
-const copyJS = () => {
-    return src(['dist/scripts/*.js'])
-        .pipe(dest('build/scripts'));
+const buildPug = () => {
+    console.log('Компиляция Pug');
+
+    return src('dist/pages/*.pug')
+        .pipe(pug())
+        .pipe(dest('build/'))
+        .pipe(browserSync.stream());
 };
 
-const copyHtml = () => {
-    return src(['dist/pages/*.html'])
-        .pipe(dest('build/pages'));
+const browserSyncJob = () => {
+    browserSync.init({
+        server: 'build/'
+    });
+    watch('dist/scss/*.scss', buildSass);
+    watch('dist/pages/*.pug', buildPug);
 };
 
-exports.copy = parallel(copyScss, copyJS, copyHtml);
+exports.development = parallel(buildSass, buildPug, browserSyncJob);
+
+
 
